@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+"""
+A portable version of the BSD mtree utility.
+"""
+
+import sys
+
+
+def main():
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
