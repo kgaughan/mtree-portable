@@ -1,12 +1,41 @@
 #!/usr/bin/env python
-"""
-A portable version of the BSD mtree utility.
+"""\
+A portable version of the BSD mtree utility, which maps a directory hierarchy.
+
+Usage:
+    mtree [-bCcDdejLlMnPqrStUuWx] [-i | -m] [-E tags] [-F flavor] [-f spec]
+          [-I tags] [-K keywords] [-k keywords] [-N dbdir] [-O onlyfile]
+          [-p path] [-R keywords] [-s seed] [-X exclude-file]
 """
 
+import getopt
 import sys
 
 
+OPTS = 'bCcDdejLlMnPqrStUuWximE:F:f:I:K:k:N:O:p:R:s:X:'
+
+
+def usage(exc=None):
+    """
+    Print out usage sanely.
+    """
+    out = sys.stdout
+    usage = __doc__.rstrip()
+    if exc is not None:
+        out = sys.stderr
+        usage = '\n' + usage[usage.find('\n\n'):].lstrip()
+        print >> out, "Error:", exc
+    print >> out, usage
+    if exc is None:
+        sys.exit(0)
+    sys.exit(1)
+
+
 def main():
+    try:
+        opts, _ = getopt.getopt(sys.argv[1:], OPTS)
+    except getopt.GetoptError, exc:
+        usage(exc)
     return 0
 
 
