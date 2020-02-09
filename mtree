@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-"""\
+#!/usr/bin/env python3
+"""
 A portable version of the BSD mtree utility, which maps a directory hierarchy.
 
 Usage:
@@ -14,28 +14,43 @@ import sys
 
 OPTS = 'bCcDdejLlMnPqrStUuWximE:F:f:I:K:k:N:O:p:R:s:X:'
 
+# Map hash keywords to hash names in hashlib.
+HASHES = {
+    'md5': 'md5',
+    'md5digest': 'md5',
+    'ripemd160digest': 'ripemd160',
+    'rmd160': 'ripemd160',
+    'rmd160digest': 'ripemd160',
+    'sha1': 'sha1',
+    'sha1digest': 'sha1',
+    'sha256': 'sha256',
+    'sha256digest': 'sha256',
+}
+
 
 def usage(exc=None):
     """
     Print out usage sanely.
     """
     out = sys.stdout
-    usage = __doc__.rstrip()
+    usage_doc = __doc__.rstrip()
     if exc is not None:
         out = sys.stderr
-        usage = '\n' + usage[usage.find('\n\n'):].lstrip()
-        print >> out, "Error:", exc
-    print >> out, usage
+        usage_doc = '\n' + usage_doc[usage_doc.find('\n\n'):].lstrip()
+        print("Error:", exc, file=out)
+    print(usage_doc, file=out)
     if exc is None:
-        sys.exit(0)
-    sys.exit(1)
+        return 0
+    return 1
 
 
 def main():
     try:
         opts, _ = getopt.getopt(sys.argv[1:], OPTS)
-    except getopt.GetoptError, exc:
-        usage(exc)
+    except getopt.GetoptError as exc:
+        return usage(exc)
+
+    print(opts)
     return 0
 
 
