@@ -12,19 +12,19 @@ import getopt
 import sys
 
 
-OPTS = 'bCcDdejLlMnPqrStUuWximE:F:f:I:K:k:N:O:p:R:s:X:'
+OPTS = "bCcDdejLlMnPqrStUuWximE:F:f:I:K:k:N:O:p:R:s:X:"
 
 # Map hash keywords to hash names in hashlib.
 HASHES = {
-    'md5': 'md5',
-    'md5digest': 'md5',
-    'ripemd160digest': 'ripemd160',
-    'rmd160': 'ripemd160',
-    'rmd160digest': 'ripemd160',
-    'sha1': 'sha1',
-    'sha1digest': 'sha1',
-    'sha256': 'sha256',
-    'sha256digest': 'sha256',
+    "md5": "md5",
+    "md5digest": "md5",
+    "ripemd160digest": "ripemd160",
+    "rmd160": "ripemd160",
+    "rmd160digest": "ripemd160",
+    "sha1": "sha1",
+    "sha1digest": "sha1",
+    "sha256": "sha256",
+    "sha256digest": "sha256",
 }
 
 
@@ -36,7 +36,7 @@ def usage(exc=None):
     usage_doc = __doc__.rstrip()
     if exc is not None:
         out = sys.stderr
-        usage_doc = '\n' + usage_doc[usage_doc.find('\n\n'):].lstrip()
+        usage_doc = "\n" + usage_doc[usage_doc.find("\n\n") :].lstrip()
         print("Error:", exc, file=out)
     print(usage_doc, file=out)
     if exc is None:
@@ -54,5 +54,5 @@ def main():
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())
